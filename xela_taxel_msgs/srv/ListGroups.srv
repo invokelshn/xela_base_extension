@@ -1,0 +1,4 @@
+# request: none
+---
+string groups_yaml          # 정의된 그룹 목록 (yaml 리스트 문자열)
+string enabled_yaml         # enable 상태인 그룹 목록 (yaml 리스트 문자열)

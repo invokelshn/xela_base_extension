@@ -1,0 +1,5 @@
+string module   # ex) "afc15" (model + module_no)
+bool enabled    # true: show, false: hide
+---
+bool success
+string message
