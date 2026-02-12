@@ -1,0 +1,8 @@
+[submodule "xela_base/xela_models"]
+	path = xela_base/xela_models
+	url = https://github.com/mcsix/xela_models.git
+	branch = dev1.8.0-ros2
+[submodule "xela_base/xela_server_ros2"]
+	path = xela_base/xela_server_ros2
+	url = https://github.com/invokelshn/xela_server_ros2.git
+	branch = feature/fixed-launch-issue
