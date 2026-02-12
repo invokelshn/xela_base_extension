@@ -6,3 +6,7 @@
 	path = xela_base/xela_server_ros2
 	url = https://github.com/invokelshn/xela_server_ros2.git
 	branch = feature/fixed-launch-issue
+[submodule "allegro_hand_ros2"]
+	path = allegro_hand_ros2
+	url = https://github.com/wilson-ko/allegro_hand_ros2.git
+	branch = fixed/moveit-pro
