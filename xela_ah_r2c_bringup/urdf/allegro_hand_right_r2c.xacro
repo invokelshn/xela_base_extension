@@ -78,9 +78,9 @@
     </joint>
 
     <xacro:if value="${palm == 1}">
-      <xacro:uSPa46_2409 sequence="${seq}16" col="red" parent="${bseq}palm_link" x="0.014" y="-0.021" z="-0.0204"  rz="90" rx="90" ry="180" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
-      <xacro:uSPa46_2409 sequence="${seq}17" col="green" parent="${bseq}palm_link" x="0.014" y="0.021" z="-0.0204"  rz="90" rx="90" ry="0" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
-      <xacro:uSPa46_2409 sequence="${seq}18" col="blue" parent="${bseq}palm_link" x="0.014" y="-0.021" z="-0.0515" rz="90" rx="90" ry="180" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
+      <xacro:uSPa46_2409 sequence="${seq}51" col="red" parent="${bseq}palm_link" x="0.014" y="-0.021" z="-0.0204"  rz="90" rx="90" ry="180" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
+      <xacro:uSPa46_2409 sequence="${seq}52" col="green" parent="${bseq}palm_link" x="0.014" y="0.021" z="-0.0204"  rz="90" rx="90" ry="0" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
+      <xacro:uSPa46_2409 sequence="${seq}53" col="blue" parent="${bseq}palm_link" x="0.014" y="-0.021" z="-0.0515" rz="90" rx="90" ry="180" taxels="${taxels}" skipinertia="1" sensor_collision="${sensor_collision}" />
     </xacro:if>
     <xacro:if value="${defaultnames == 1}">
       <!-- Thumb -->
