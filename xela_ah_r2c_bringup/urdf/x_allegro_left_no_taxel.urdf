@@ -256,13 +256,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="blue"/>
     </visual>
@@ -306,13 +306,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="blue"/>
     </visual>
@@ -337,13 +337,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl" scale="0.93 0.93 0.93"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl" scale="0.93 0.93 0.93"/>
       </geometry>
       <material name="green"/>
     </visual>
@@ -422,13 +422,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -445,13 +445,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -515,13 +515,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -571,13 +571,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl" scale="0.93 0.93 0.93"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl" scale="0.93 0.93 0.93"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -656,13 +656,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -679,13 +679,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -749,13 +749,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -805,13 +805,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl" scale="0.93 0.93 0.93"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl" scale="0.93 0.93 0.93"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -890,13 +890,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -913,13 +913,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -983,13 +983,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/4x4.stl"/>
+        <mesh filename="package://xela_models/mesh/uSPa44.stl"/>
       </geometry>
       <material name="red"/>
     </visual>
@@ -1039,13 +1039,13 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://xela_models/mesh/ft_c.stl" scale="0.93 0.93 0.93"/>
+        <mesh filename="package://xela_models/mesh/uSCuAH.stl" scale="0.93 0.93 0.93"/>
       </geometry>
       <material name="red"/>
     </visual>
