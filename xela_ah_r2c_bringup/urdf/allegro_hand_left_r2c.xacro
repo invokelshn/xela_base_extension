@@ -527,7 +527,7 @@
     </xacro:if>
     <joint name="ah_joint${finger_num}1" type="revolute">
       <axis xyz="0 0 -1"/>
-      <limit effort="15" velocity="7" lower="${-0.205+0.1}" upper="${1.263-0.1}" />
+      <limit effort="15" velocity="7" lower="${-0.30}" upper="${1.263-0.1}" />
       <parent link="${sequence}ah_link_${finger_num}0"/>
       <child link="${sequence}ah_link_${finger_num}1"/>   
       <origin xyz="-0.027 -0.005 0.0399"/>
