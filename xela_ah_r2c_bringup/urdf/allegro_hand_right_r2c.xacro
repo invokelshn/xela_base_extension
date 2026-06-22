@@ -603,7 +603,7 @@
 
     <joint name="ah_joint${finger_num}2" type="revolute">
       <axis xyz="0 1 0"/>
-      <limit effort="15" velocity="7" lower="${-0.289+0.1}" upper="${1.744-0.1}" />
+      <limit effort="15" velocity="7" lower="${-0.289}" upper="${1.744-0.1}" />
       <parent link="${sequence}ah_link_${finger_num}1"/>
       <child link="${sequence}ah_link_${finger_num}2"/>
       <origin xyz="0 0 ${0.0177}"/>
