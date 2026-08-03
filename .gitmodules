@@ -10,3 +10,6 @@
 	path = allegro_hand_ros2
 	url = https://github.com/wilson-ko/allegro_hand_ros2.git
 	branch = fixed/moveit-pro
+[submodule "dg5f_ros2"]
+	path = dg5f_ros2
+	url = https://github.com/tesollodelto/dg5f_ros2.git
