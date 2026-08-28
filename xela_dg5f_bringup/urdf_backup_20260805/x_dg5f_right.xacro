@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!--
+    x_dg5f_right.xacro
+
+    XELA bringup description for the Tesollo DG-5F right hand.
+    Inherits the stock DG-5F kinematics/mesh from dg5f_description
+    (dg5f_macro.xacro) and attaches XELA tactile sensors:
+      - dg5f_fingertip  : 12-taxel tip sensor on all 5 fingertips
+      - uSPa22          : 4-taxel patch on the 2 distal phalanges of every finger
+      - uSPa46          : 24-taxel patch on the palm
+
+    NOTE - mesh recentering:
+    The XELA sensor STL files in xela_dg5f_bringup/mesh/*.stl keep their raw
+    CAD-assembly vertex coordinates (not centered on their own link origin).
+    That is compensated inside each macro's own visual/collision <origin>
+    (dg5f_fingertip.xacro, uSPa22_dg5f.xacro, uSPa46_dg5f.xacro), so the
+    joint xyz/rpy below can stay a plain, small mount-point offset that the
+    taxel array offsets in those same macros assume. Do NOT reintroduce a
+    large compensation offset here; the taxels and the mesh share the same
+    link/joint, so shifting this joint moves the taxels too.
+    All of the placements below are first-pass/empirically-tuned via
+    visual feedback in RViz (x_dg5f_right_display.launch.py); a CAD-based
+    exact-transform approach (using xela_dg5f_bringup/fcstd/xela_dg5f_model.FCStd,
+    not tracked in git) was attempted and reverted after producing far worse
+    placements, most likely because the FreeCAD Part_N-M phalanx placements
+    do not actually correspond to the URDF's rl_dg_N_M link frame convention.
+    Confirm/adjust visually if the phalanx/mesh geometry changes.
+-->
+<robot name="x_dg5f_right" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ==================== Includes ==================== -->
+  <!-- Stock DG-5F kinematics/meshes -->
+  <xacro:include filename="$(find dg5f_description)/urdf/dg5f_macro.xacro" />
+
+  <!-- XELA sensor macros -->
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/dg5f_fingertip.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/uSPa22_dg5f.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/uSPa46_dg5f.xacro" />
+
+  <!-- ==================== Mount placeholders (tune in RViz) ==================== -->
+  <!-- Standoff from the phalanx central axis out to the sensor pad face -->
+  <xacro:property name="xela_phalange_standoff" value="0.010" />
+  <!-- Standoff from the palm mesh out to the uSPa46 pad face -->
+  <xacro:property name="xela_palm_standoff" value="0.010" />
+  <xacro:property name="xela_palm_z" value="0.045" />
+
+  <!-- Stock phalanx segment lengths (from dg5f_right_fingers.urdf.xacro joint origins) -->
+  <xacro:property name="len_f1_mid" value="0.0388" /> <!-- rl_dg_1_3, translates along local y -->
+  <xacro:property name="len_f1_dist" value="0.03203" /> <!-- rl_dg_1_4, translates along local y -->
+  <xacro:property name="len_std_mid" value="0.0388" /> <!-- rl_dg_{2,3,4,5}_3, translates along local z -->
+  <xacro:property name="len_f234_dist" value="0.02123" /> <!-- rl_dg_{2,3,4}_4 -->
+  <xacro:property name="len_f5_dist" value="0.03203" /> <!-- rl_dg_5_4 -->
+
+  <!-- ==================== Base ==================== -->
+  <link name="base_link" />
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="rl_dg_base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <!--
+    Instantiate the stock right hand. tip{1..5}_type is set to "xela"
+    (a value the stock macro does not recognise) so that no vendor tip link
+    is created at all, so we attach our own XELA fingertip sensor instead, at
+    the exact same origin the vendor tip would have used.
+  -->
+  <xacro:dg5f_hand
+    side="right"
+    base_type="default"
+    with_mount="true"
+    tip1_type="xela"
+    tip2_type="xela"
+    tip3_type="xela"
+    tip4_type="xela"
+    tip5_type="xela"
+  />
+
+  <!-- ==================== Fingertip sensors ==================== -->
+  <!--
+    xyz = the vendor tip joint origin (dg5f_right_fingers.urdf.xacro),
+    unchanged; this is what the taxel array offsets in dg5f_fingertip.xacro
+    assume, so it must NOT be shifted to compensate the mesh's raw-STL
+    offset (that shift lives in dg5f_fingertip.xacro's visual/collision
+    origin instead, see the note there).
+    rpy: the vendor rpy correctly aims the taxel pad/tip outward (rx+180
+    relative to vendor maps the mesh's local +Y "nose" axis onto the
+    outward direction, matching the joint's own translation axis) but left
+    the mesh spun 180 deg around that same nose axis, so an extra 180 deg
+    spin about the mesh's own local Y axis fixes that without moving the
+    taxel layout; composed with the outward-flip, the net result is rx
+    unchanged from vendor and rz flipped in sign (f2/f3/f4/f5), or rx/ry
+    both back to 0 (f1).
+  -->
+  <xacro:dg5f_fingertip sequence="f1" parent="rl_dg_1_4"
+    x="0.0" y="0.03203" z="0.0" rx="0" ry="0" rz="0" />
+
+  <xacro:dg5f_fingertip sequence="f2" parent="rl_dg_2_4"
+    x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" />
+
+  <xacro:dg5f_fingertip sequence="f3" parent="rl_dg_3_4"
+    x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" />
+
+  <xacro:dg5f_fingertip sequence="f4" parent="rl_dg_4_4"
+    x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" />
+
+  <xacro:dg5f_fingertip sequence="f5" parent="rl_dg_5_4"
+    x="0.0" y="0.0" z="0.03203" rx="90" ry="0" rz="90" />
+
+  <!-- ==================== Phalange sensors (uSPa22 x2 per finger) ==================== -->
+  <!--
+    Standard fingers (2/3/4/5) translate along local z between phalanges and
+    flex about local y, so the grasp-facing (belly) surface is the local +x
+    face -> ry="90" rotates the sensor's taxel (+z) axis onto that face.
+    The thumb (finger 1) translates along local y and flexes about local x,
+    so its belly surface is local +z -> no extra rotation needed.
+    xyz below is the plain target mount point on the phalanx surface; the
+    mesh's own raw-STL offset is compensated inside uSPa22_dg5f.xacro's
+    visual/collision origin instead (see the note there), so it must NOT be
+    added here (that joint/link is shared with the taxel array).
+    xela_phalange_axial_shift moves that mount point back toward the
+    proximal (palm) end of each phalanx instead of sitting exactly at its
+    midpoint; tune this value visually.
+  -->
+  <xacro:property name="xela_phalange_axial_shift" value="0.010" />
+
+  <!-- Finger 1 (thumb): mid = rl_dg_1_3, distal = rl_dg_1_4 -->
+  <xacro:dg_uSPa22 sequence="f1_mid" parent="rl_dg_1_3"
+    x="0.0" y="${len_f1_mid/2 - xela_phalange_axial_shift}" z="${xela_phalange_standoff}" rx="0" ry="0" rz="0" />
+  <xacro:dg_uSPa22 sequence="f1_dist" parent="rl_dg_1_4"
+    x="0.0" y="${len_f1_dist/2 - xela_phalange_axial_shift}" z="${xela_phalange_standoff}" rx="0" ry="0" rz="0" />
+
+  <!-- Finger 2 (index): mid = rl_dg_2_3, distal = rl_dg_2_4 -->
+  <xacro:dg_uSPa22 sequence="f2_mid" parent="rl_dg_2_3"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_std_mid/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+  <xacro:dg_uSPa22 sequence="f2_dist" parent="rl_dg_2_4"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_f234_dist/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+
+  <!-- Finger 3 (middle): mid = rl_dg_3_3, distal = rl_dg_3_4 -->
+  <xacro:dg_uSPa22 sequence="f3_mid" parent="rl_dg_3_3"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_std_mid/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+  <xacro:dg_uSPa22 sequence="f3_dist" parent="rl_dg_3_4"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_f234_dist/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+
+  <!-- Finger 4 (ring): mid = rl_dg_4_3, distal = rl_dg_4_4 -->
+  <xacro:dg_uSPa22 sequence="f4_mid" parent="rl_dg_4_3"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_std_mid/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+  <xacro:dg_uSPa22 sequence="f4_dist" parent="rl_dg_4_4"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_f234_dist/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+
+  <!-- Finger 5 (pinky): mid = rl_dg_5_3, distal = rl_dg_5_4 -->
+  <xacro:dg_uSPa22 sequence="f5_mid" parent="rl_dg_5_3"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_std_mid/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+  <xacro:dg_uSPa22 sequence="f5_dist" parent="rl_dg_5_4"
+    x="${xela_phalange_standoff}" y="0.0" z="${len_f5_dist/2 - xela_phalange_axial_shift}" rx="0" ry="90" rz="0" />
+
+  <!-- ==================== Palm sensor (uSPa46) ==================== -->
+  <xacro:dg_uSPa46 sequence="palm" parent="rl_dg_palm"
+    x="${xela_palm_standoff}" y="0.0" z="${xela_palm_z}" rx="0" ry="90" rz="0" />
+
+</robot>

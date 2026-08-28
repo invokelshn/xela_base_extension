@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot name="dg5f_fingertip" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- dg5f_fingertip model -->
+  <xacro:arg name="base_prefix" default="base_" />
+
+  <xacro:macro name="dg5f_fingertip" params="sequence parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0 col:='blue' body:=1 taxels:=1 skipinertia:=0 xoff:=-0.0237 yoff:=0.0178 zoff:=0.005 txstep:=0.00724 tystep:=0.00717 standalone:=0 sensor_collision:=1">
+
+    <xacro:if value="${standalone == 1}">
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+    </xacro:if>
+
+    <xacro:property name="bseq" value="$(arg base_prefix)${sequence}"/>
+
+    <joint name="${bseq}_dg5f_ft_fixed" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}"/>
+      <parent link="${parent}" />
+      <child link="${bseq}_dg5f_ft_link" />
+    </joint>
+    <!--
+      dg_x_tip.stl keeps its raw CAD-assembly vertex coordinates (not
+      recentered to the link origin): bounding box x:[149.509,175.231]
+      y:[-25.695,-3.470] z:[-54.487,-33.296] (mm). y_min is the mesh's true
+      rearmost point, so shifting by -(x, y_min, z) guarantees every mesh
+      point renders forward of the joint origin (y >= y_min), i.e. nothing
+      embedded into the phalanx. Z reference is z_min + thickness/2
+      (centered, not zero-embedding) since z_min alone overshot by the
+      full 21.2mm thickness. X keeps the boundary-loop reference (162.781):
+      origin xyz = -(162.781,-25.695,-43.887)mm.
+    -->
+    <link name="${bseq}_dg5f_ft_link">
+      <collision>
+        <origin xyz="-0.162781 0.025695 0.043887" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_x_tip.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <xacro:if value="${body == 1}">
+        <visual>
+          <origin xyz="-0.162781 0.025695 0.043887" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg_x_tip.stl" scale="0.001 0.001 0.001" />
+          </geometry>
+          <material name="${col}"/>
+        </visual>
+        <xacro:unless value="${skipinertia == 1}">
+          <inertial>
+            <mass value="0.0108" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1.11e-07" ixy="0.0" ixz="0.0" iyy="2.97e-07" iyz="0.0" izz="4.03e-07" />
+          </inertial>
+        </xacro:unless>
+      </xacro:if>
+    </link>
+
+    <gazebo reference="${bseq}_dg5f_ft_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!--
+      The 12 taxels below are rotated 180deg about the mesh's own local Y
+      axis (x,y,z)->(-x,y,-z) relative to the original vendor-supplied
+      layout: the formation (relative spacing) is unchanged, but the whole
+      dome sits on the +Z side of this link, which maps to the palm-facing
+      side instead of the nail/dorsal side. y shifted by -0.006 (6mm total)
+      from that vendor-derived layout so the dome sits on the fingertip
+      surface instead of past it.
+    -->
+    <xacro:if value="${taxels == 1}">
+      <xacro:taxel sequence="${sequence}_dg5f_ft_01" x="0.011700"  y="0.009488" z="0.000572" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_02" x="0.009008"  y="0.009838" z="0.007391" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_03" x="0.008961"  y="0.016651" z="0.002871" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_04" x="0.002300"  y="0.009328" z="0.010502" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_05" x="-0.002300" y="0.009328" z="0.010502" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_06" x="-0.002300" y="0.015734" z="0.008482" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_07" x="0.002300"  y="0.015734" z="0.008482" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_08" x="0.002300"  y="0.019832" z="0.003140" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_09" x="-0.002300" y="0.019832" z="0.003140" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_10" x="-0.009008" y="0.009838" z="0.007391" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_11" x="-0.008961" y="0.016651" z="0.002871" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_dg5f_ft_12" x="-0.011700" y="0.009488" z="0.000572" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

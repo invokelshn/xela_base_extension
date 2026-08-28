@@ -22,3 +22,6 @@ device_profiles:
   uSPrDS:
     keep_joints_files:
       - usprds_joint.yaml
+  XDG5FR:
+    keep_joints_files:
+      - xdg5fr_joint.yaml

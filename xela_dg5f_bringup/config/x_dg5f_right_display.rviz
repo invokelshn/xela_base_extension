@@ -1,0 +1,1589 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /RobotModel1
+        - /TF1
+      Splitter Ratio: 0.5
+    Tree Height: 486
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Expanded: ~
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 0.05000000074505806
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_f1_dg5f_ft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f1_dist_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f1_mid_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f2_dg5f_ft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f2_dist_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f2_mid_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f3_dg5f_ft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f3_dist_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f3_mid_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f4_dg5f_ft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f4_dist_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f4_mid_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f5_dg5f_ft_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f5_dist_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_f5_mid_uSPa22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_palm_uSPa46_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dg5f_ft_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dist_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dist_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dist_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_dist_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_mid_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_mid_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_mid_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f1_mid_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dg5f_ft_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dist_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dist_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dist_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_dist_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_mid_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_mid_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_mid_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f2_mid_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dg5f_ft_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dist_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dist_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dist_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_dist_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_mid_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_mid_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_mid_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f3_mid_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dg5f_ft_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dist_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dist_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dist_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_dist_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_mid_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_mid_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_mid_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f4_mid_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dg5f_ft_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dist_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dist_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dist_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_dist_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_mid_uSPa22_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_mid_uSPa22_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_mid_uSPa22_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        f5_mid_uSPa22_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_01_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_02_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_03_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_04_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_05_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_06_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_07_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_08_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_09_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_10_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_11_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_12_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_13_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_14_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_15_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_16_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_17_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_18_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_19_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_20_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_21_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_22_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_23_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_uSPa46_24_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_1_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_1_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_1_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_1_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_2_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_2_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_2_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_2_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_3_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_3_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_3_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_3_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_4_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_4_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_4_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_4_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_5_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_5_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_5_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_5_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rl_dg_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rl_dg_palm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        base_f1_dg5f_ft_link:
+          Value: true
+        base_f1_dist_uSPa22_link:
+          Value: true
+        base_f1_mid_uSPa22_link:
+          Value: true
+        base_f2_dg5f_ft_link:
+          Value: true
+        base_f2_dist_uSPa22_link:
+          Value: true
+        base_f2_mid_uSPa22_link:
+          Value: true
+        base_f3_dg5f_ft_link:
+          Value: true
+        base_f3_dist_uSPa22_link:
+          Value: true
+        base_f3_mid_uSPa22_link:
+          Value: true
+        base_f4_dg5f_ft_link:
+          Value: true
+        base_f4_dist_uSPa22_link:
+          Value: true
+        base_f4_mid_uSPa22_link:
+          Value: true
+        base_f5_dg5f_ft_link:
+          Value: true
+        base_f5_dist_uSPa22_link:
+          Value: true
+        base_f5_mid_uSPa22_link:
+          Value: true
+        base_link:
+          Value: true
+        base_palm_uSPa46_link:
+          Value: true
+        f1_dg5f_ft_01_link:
+          Value: true
+        f1_dg5f_ft_02_link:
+          Value: true
+        f1_dg5f_ft_03_link:
+          Value: true
+        f1_dg5f_ft_04_link:
+          Value: true
+        f1_dg5f_ft_05_link:
+          Value: true
+        f1_dg5f_ft_06_link:
+          Value: true
+        f1_dg5f_ft_07_link:
+          Value: true
+        f1_dg5f_ft_08_link:
+          Value: true
+        f1_dg5f_ft_09_link:
+          Value: true
+        f1_dg5f_ft_10_link:
+          Value: true
+        f1_dg5f_ft_11_link:
+          Value: true
+        f1_dg5f_ft_12_link:
+          Value: true
+        f1_dist_uSPa22_01_link:
+          Value: true
+        f1_dist_uSPa22_02_link:
+          Value: true
+        f1_dist_uSPa22_03_link:
+          Value: true
+        f1_dist_uSPa22_04_link:
+          Value: true
+        f1_mid_uSPa22_01_link:
+          Value: true
+        f1_mid_uSPa22_02_link:
+          Value: true
+        f1_mid_uSPa22_03_link:
+          Value: true
+        f1_mid_uSPa22_04_link:
+          Value: true
+        f2_dg5f_ft_01_link:
+          Value: true
+        f2_dg5f_ft_02_link:
+          Value: true
+        f2_dg5f_ft_03_link:
+          Value: true
+        f2_dg5f_ft_04_link:
+          Value: true
+        f2_dg5f_ft_05_link:
+          Value: true
+        f2_dg5f_ft_06_link:
+          Value: true
+        f2_dg5f_ft_07_link:
+          Value: true
+        f2_dg5f_ft_08_link:
+          Value: true
+        f2_dg5f_ft_09_link:
+          Value: true
+        f2_dg5f_ft_10_link:
+          Value: true
+        f2_dg5f_ft_11_link:
+          Value: true
+        f2_dg5f_ft_12_link:
+          Value: true
+        f2_dist_uSPa22_01_link:
+          Value: true
+        f2_dist_uSPa22_02_link:
+          Value: true
+        f2_dist_uSPa22_03_link:
+          Value: true
+        f2_dist_uSPa22_04_link:
+          Value: true
+        f2_mid_uSPa22_01_link:
+          Value: true
+        f2_mid_uSPa22_02_link:
+          Value: true
+        f2_mid_uSPa22_03_link:
+          Value: true
+        f2_mid_uSPa22_04_link:
+          Value: true
+        f3_dg5f_ft_01_link:
+          Value: true
+        f3_dg5f_ft_02_link:
+          Value: true
+        f3_dg5f_ft_03_link:
+          Value: true
+        f3_dg5f_ft_04_link:
+          Value: true
+        f3_dg5f_ft_05_link:
+          Value: true
+        f3_dg5f_ft_06_link:
+          Value: true
+        f3_dg5f_ft_07_link:
+          Value: true
+        f3_dg5f_ft_08_link:
+          Value: true
+        f3_dg5f_ft_09_link:
+          Value: true
+        f3_dg5f_ft_10_link:
+          Value: true
+        f3_dg5f_ft_11_link:
+          Value: true
+        f3_dg5f_ft_12_link:
+          Value: true
+        f3_dist_uSPa22_01_link:
+          Value: true
+        f3_dist_uSPa22_02_link:
+          Value: true
+        f3_dist_uSPa22_03_link:
+          Value: true
+        f3_dist_uSPa22_04_link:
+          Value: true
+        f3_mid_uSPa22_01_link:
+          Value: true
+        f3_mid_uSPa22_02_link:
+          Value: true
+        f3_mid_uSPa22_03_link:
+          Value: true
+        f3_mid_uSPa22_04_link:
+          Value: true
+        f4_dg5f_ft_01_link:
+          Value: true
+        f4_dg5f_ft_02_link:
+          Value: true
+        f4_dg5f_ft_03_link:
+          Value: true
+        f4_dg5f_ft_04_link:
+          Value: true
+        f4_dg5f_ft_05_link:
+          Value: true
+        f4_dg5f_ft_06_link:
+          Value: true
+        f4_dg5f_ft_07_link:
+          Value: true
+        f4_dg5f_ft_08_link:
+          Value: true
+        f4_dg5f_ft_09_link:
+          Value: true
+        f4_dg5f_ft_10_link:
+          Value: true
+        f4_dg5f_ft_11_link:
+          Value: true
+        f4_dg5f_ft_12_link:
+          Value: true
+        f4_dist_uSPa22_01_link:
+          Value: true
+        f4_dist_uSPa22_02_link:
+          Value: true
+        f4_dist_uSPa22_03_link:
+          Value: true
+        f4_dist_uSPa22_04_link:
+          Value: true
+        f4_mid_uSPa22_01_link:
+          Value: true
+        f4_mid_uSPa22_02_link:
+          Value: true
+        f4_mid_uSPa22_03_link:
+          Value: true
+        f4_mid_uSPa22_04_link:
+          Value: true
+        f5_dg5f_ft_01_link:
+          Value: true
+        f5_dg5f_ft_02_link:
+          Value: true
+        f5_dg5f_ft_03_link:
+          Value: true
+        f5_dg5f_ft_04_link:
+          Value: true
+        f5_dg5f_ft_05_link:
+          Value: true
+        f5_dg5f_ft_06_link:
+          Value: true
+        f5_dg5f_ft_07_link:
+          Value: true
+        f5_dg5f_ft_08_link:
+          Value: true
+        f5_dg5f_ft_09_link:
+          Value: true
+        f5_dg5f_ft_10_link:
+          Value: true
+        f5_dg5f_ft_11_link:
+          Value: true
+        f5_dg5f_ft_12_link:
+          Value: true
+        f5_dist_uSPa22_01_link:
+          Value: true
+        f5_dist_uSPa22_02_link:
+          Value: true
+        f5_dist_uSPa22_03_link:
+          Value: true
+        f5_dist_uSPa22_04_link:
+          Value: true
+        f5_mid_uSPa22_01_link:
+          Value: true
+        f5_mid_uSPa22_02_link:
+          Value: true
+        f5_mid_uSPa22_03_link:
+          Value: true
+        f5_mid_uSPa22_04_link:
+          Value: true
+        palm_uSPa46_01_link:
+          Value: true
+        palm_uSPa46_02_link:
+          Value: true
+        palm_uSPa46_03_link:
+          Value: true
+        palm_uSPa46_04_link:
+          Value: true
+        palm_uSPa46_05_link:
+          Value: true
+        palm_uSPa46_06_link:
+          Value: true
+        palm_uSPa46_07_link:
+          Value: true
+        palm_uSPa46_08_link:
+          Value: true
+        palm_uSPa46_09_link:
+          Value: true
+        palm_uSPa46_10_link:
+          Value: true
+        palm_uSPa46_11_link:
+          Value: true
+        palm_uSPa46_12_link:
+          Value: true
+        palm_uSPa46_13_link:
+          Value: true
+        palm_uSPa46_14_link:
+          Value: true
+        palm_uSPa46_15_link:
+          Value: true
+        palm_uSPa46_16_link:
+          Value: true
+        palm_uSPa46_17_link:
+          Value: true
+        palm_uSPa46_18_link:
+          Value: true
+        palm_uSPa46_19_link:
+          Value: true
+        palm_uSPa46_20_link:
+          Value: true
+        palm_uSPa46_21_link:
+          Value: true
+        palm_uSPa46_22_link:
+          Value: true
+        palm_uSPa46_23_link:
+          Value: true
+        palm_uSPa46_24_link:
+          Value: true
+        rl_dg_1_1:
+          Value: true
+        rl_dg_1_2:
+          Value: true
+        rl_dg_1_3:
+          Value: true
+        rl_dg_1_4:
+          Value: true
+        rl_dg_2_1:
+          Value: true
+        rl_dg_2_2:
+          Value: true
+        rl_dg_2_3:
+          Value: true
+        rl_dg_2_4:
+          Value: true
+        rl_dg_3_1:
+          Value: true
+        rl_dg_3_2:
+          Value: true
+        rl_dg_3_3:
+          Value: true
+        rl_dg_3_4:
+          Value: true
+        rl_dg_4_1:
+          Value: true
+        rl_dg_4_2:
+          Value: true
+        rl_dg_4_3:
+          Value: true
+        rl_dg_4_4:
+          Value: true
+        rl_dg_5_1:
+          Value: true
+        rl_dg_5_2:
+          Value: true
+        rl_dg_5_3:
+          Value: true
+        rl_dg_5_4:
+          Value: true
+        rl_dg_base:
+          Value: true
+        rl_dg_base_link:
+          Value: true
+        rl_dg_mount:
+          Value: true
+        rl_dg_palm:
+          Value: true
+      Marker Scale: 0.05000000074505806
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          rl_dg_base_link:
+            rl_dg_mount:
+              rl_dg_base:
+                rl_dg_palm:
+                  base_palm_uSPa46_link:
+                    palm_uSPa46_01_link:
+                      {}
+                    palm_uSPa46_02_link:
+                      {}
+                    palm_uSPa46_03_link:
+                      {}
+                    palm_uSPa46_04_link:
+                      {}
+                    palm_uSPa46_05_link:
+                      {}
+                    palm_uSPa46_06_link:
+                      {}
+                    palm_uSPa46_07_link:
+                      {}
+                    palm_uSPa46_08_link:
+                      {}
+                    palm_uSPa46_09_link:
+                      {}
+                    palm_uSPa46_10_link:
+                      {}
+                    palm_uSPa46_11_link:
+                      {}
+                    palm_uSPa46_12_link:
+                      {}
+                    palm_uSPa46_13_link:
+                      {}
+                    palm_uSPa46_14_link:
+                      {}
+                    palm_uSPa46_15_link:
+                      {}
+                    palm_uSPa46_16_link:
+                      {}
+                    palm_uSPa46_17_link:
+                      {}
+                    palm_uSPa46_18_link:
+                      {}
+                    palm_uSPa46_19_link:
+                      {}
+                    palm_uSPa46_20_link:
+                      {}
+                    palm_uSPa46_21_link:
+                      {}
+                    palm_uSPa46_22_link:
+                      {}
+                    palm_uSPa46_23_link:
+                      {}
+                    palm_uSPa46_24_link:
+                      {}
+                  rl_dg_1_1:
+                    rl_dg_1_2:
+                      rl_dg_1_3:
+                        base_f1_mid_uSPa22_link:
+                          f1_mid_uSPa22_01_link:
+                            {}
+                          f1_mid_uSPa22_02_link:
+                            {}
+                          f1_mid_uSPa22_03_link:
+                            {}
+                          f1_mid_uSPa22_04_link:
+                            {}
+                        rl_dg_1_4:
+                          base_f1_dg5f_ft_link:
+                            f1_dg5f_ft_01_link:
+                              {}
+                            f1_dg5f_ft_02_link:
+                              {}
+                            f1_dg5f_ft_03_link:
+                              {}
+                            f1_dg5f_ft_04_link:
+                              {}
+                            f1_dg5f_ft_05_link:
+                              {}
+                            f1_dg5f_ft_06_link:
+                              {}
+                            f1_dg5f_ft_07_link:
+                              {}
+                            f1_dg5f_ft_08_link:
+                              {}
+                            f1_dg5f_ft_09_link:
+                              {}
+                            f1_dg5f_ft_10_link:
+                              {}
+                            f1_dg5f_ft_11_link:
+                              {}
+                            f1_dg5f_ft_12_link:
+                              {}
+                          base_f1_dist_uSPa22_link:
+                            f1_dist_uSPa22_01_link:
+                              {}
+                            f1_dist_uSPa22_02_link:
+                              {}
+                            f1_dist_uSPa22_03_link:
+                              {}
+                            f1_dist_uSPa22_04_link:
+                              {}
+                  rl_dg_2_1:
+                    rl_dg_2_2:
+                      rl_dg_2_3:
+                        base_f2_mid_uSPa22_link:
+                          f2_mid_uSPa22_01_link:
+                            {}
+                          f2_mid_uSPa22_02_link:
+                            {}
+                          f2_mid_uSPa22_03_link:
+                            {}
+                          f2_mid_uSPa22_04_link:
+                            {}
+                        rl_dg_2_4:
+                          base_f2_dg5f_ft_link:
+                            f2_dg5f_ft_01_link:
+                              {}
+                            f2_dg5f_ft_02_link:
+                              {}
+                            f2_dg5f_ft_03_link:
+                              {}
+                            f2_dg5f_ft_04_link:
+                              {}
+                            f2_dg5f_ft_05_link:
+                              {}
+                            f2_dg5f_ft_06_link:
+                              {}
+                            f2_dg5f_ft_07_link:
+                              {}
+                            f2_dg5f_ft_08_link:
+                              {}
+                            f2_dg5f_ft_09_link:
+                              {}
+                            f2_dg5f_ft_10_link:
+                              {}
+                            f2_dg5f_ft_11_link:
+                              {}
+                            f2_dg5f_ft_12_link:
+                              {}
+                          base_f2_dist_uSPa22_link:
+                            f2_dist_uSPa22_01_link:
+                              {}
+                            f2_dist_uSPa22_02_link:
+                              {}
+                            f2_dist_uSPa22_03_link:
+                              {}
+                            f2_dist_uSPa22_04_link:
+                              {}
+                  rl_dg_3_1:
+                    rl_dg_3_2:
+                      rl_dg_3_3:
+                        base_f3_mid_uSPa22_link:
+                          f3_mid_uSPa22_01_link:
+                            {}
+                          f3_mid_uSPa22_02_link:
+                            {}
+                          f3_mid_uSPa22_03_link:
+                            {}
+                          f3_mid_uSPa22_04_link:
+                            {}
+                        rl_dg_3_4:
+                          base_f3_dg5f_ft_link:
+                            f3_dg5f_ft_01_link:
+                              {}
+                            f3_dg5f_ft_02_link:
+                              {}
+                            f3_dg5f_ft_03_link:
+                              {}
+                            f3_dg5f_ft_04_link:
+                              {}
+                            f3_dg5f_ft_05_link:
+                              {}
+                            f3_dg5f_ft_06_link:
+                              {}
+                            f3_dg5f_ft_07_link:
+                              {}
+                            f3_dg5f_ft_08_link:
+                              {}
+                            f3_dg5f_ft_09_link:
+                              {}
+                            f3_dg5f_ft_10_link:
+                              {}
+                            f3_dg5f_ft_11_link:
+                              {}
+                            f3_dg5f_ft_12_link:
+                              {}
+                          base_f3_dist_uSPa22_link:
+                            f3_dist_uSPa22_01_link:
+                              {}
+                            f3_dist_uSPa22_02_link:
+                              {}
+                            f3_dist_uSPa22_03_link:
+                              {}
+                            f3_dist_uSPa22_04_link:
+                              {}
+                  rl_dg_4_1:
+                    rl_dg_4_2:
+                      rl_dg_4_3:
+                        base_f4_mid_uSPa22_link:
+                          f4_mid_uSPa22_01_link:
+                            {}
+                          f4_mid_uSPa22_02_link:
+                            {}
+                          f4_mid_uSPa22_03_link:
+                            {}
+                          f4_mid_uSPa22_04_link:
+                            {}
+                        rl_dg_4_4:
+                          base_f4_dg5f_ft_link:
+                            f4_dg5f_ft_01_link:
+                              {}
+                            f4_dg5f_ft_02_link:
+                              {}
+                            f4_dg5f_ft_03_link:
+                              {}
+                            f4_dg5f_ft_04_link:
+                              {}
+                            f4_dg5f_ft_05_link:
+                              {}
+                            f4_dg5f_ft_06_link:
+                              {}
+                            f4_dg5f_ft_07_link:
+                              {}
+                            f4_dg5f_ft_08_link:
+                              {}
+                            f4_dg5f_ft_09_link:
+                              {}
+                            f4_dg5f_ft_10_link:
+                              {}
+                            f4_dg5f_ft_11_link:
+                              {}
+                            f4_dg5f_ft_12_link:
+                              {}
+                          base_f4_dist_uSPa22_link:
+                            f4_dist_uSPa22_01_link:
+                              {}
+                            f4_dist_uSPa22_02_link:
+                              {}
+                            f4_dist_uSPa22_03_link:
+                              {}
+                            f4_dist_uSPa22_04_link:
+                              {}
+                  rl_dg_5_1:
+                    rl_dg_5_2:
+                      rl_dg_5_3:
+                        base_f5_mid_uSPa22_link:
+                          f5_mid_uSPa22_01_link:
+                            {}
+                          f5_mid_uSPa22_02_link:
+                            {}
+                          f5_mid_uSPa22_03_link:
+                            {}
+                          f5_mid_uSPa22_04_link:
+                            {}
+                        rl_dg_5_4:
+                          base_f5_dg5f_ft_link:
+                            f5_dg5f_ft_01_link:
+                              {}
+                            f5_dg5f_ft_02_link:
+                              {}
+                            f5_dg5f_ft_03_link:
+                              {}
+                            f5_dg5f_ft_04_link:
+                              {}
+                            f5_dg5f_ft_05_link:
+                              {}
+                            f5_dg5f_ft_06_link:
+                              {}
+                            f5_dg5f_ft_07_link:
+                              {}
+                            f5_dg5f_ft_08_link:
+                              {}
+                            f5_dg5f_ft_09_link:
+                              {}
+                            f5_dg5f_ft_10_link:
+                              {}
+                            f5_dg5f_ft_11_link:
+                              {}
+                            f5_dg5f_ft_12_link:
+                              {}
+                          base_f5_dist_uSPa22_link:
+                            f5_dist_uSPa22_01_link:
+                              {}
+                            f5_dist_uSPa22_02_link:
+                              {}
+                            f5_dist_uSPa22_03_link:
+                              {}
+                            f5_dist_uSPa22_04_link:
+                              {}
+      Update Interval: 0
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 0.6694537997245789
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: -0.03130513057112694
+        Y: -0.0027892154175788164
+        Z: 0.2783881723880768
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.45979660749435425
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 4.988188743591309
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 846
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd000000020000000000000253000002f8fc0200000004fb000000100044006900730070006c006100790073010000003b0000026f000000c700fffffffb0000001200530065006c0065006300740069006f006e00000001450000007f0000005c00fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073000000017e0000009b0000005c00fffffffb0000000800540069006d006501000002b0000000830000003700ffffff000000010000019b000002f8fc0200000001fb0000000a00560069006500770073010000003b000002f8000000a000ffffff00000349000002f800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1859
+  X: 68
+  Y: 18

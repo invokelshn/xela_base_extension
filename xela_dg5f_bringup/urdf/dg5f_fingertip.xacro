@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<robot name="dg5f_fingertip" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- dg5f_fingertip model -->
+  <xacro:arg name="base_prefix" default="base_" />
+
+  <xacro:macro name="dg5f_fingertip" params="sequence parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0 col:='blue' body:=1 taxels:=1 skipinertia:=0 xoff:=-0.0237 yoff:=0.0178 zoff:=0.005 txstep:=0.00724 tystep:=0.00717 standalone:=0 sensor_collision:=1 sensor_prefix:=''">
+    <!--
+      sensor_prefix (added 2026-08-23): optional prefix for the taxel dot
+      joint/link names only (NOT the housing link, which keeps using
+      base_prefix/bseq as before). Defaults to '' so every existing caller
+      (real hand bringup, ur7e_dg5f_base.srdf.xacro's disable_collisions
+      entries which hardcode the unprefixed names) is unaffected; only
+      std_xela_taxel_viz_dg5f's viz xacro passes a non-empty value (e.g.
+      "x_taxel_1_") so taxel names match xela_server2_dg5f's
+      r_server_model_joint_map.yaml exactly.
+    -->
+
+
+    <xacro:if value="${standalone == 1}">
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+    </xacro:if>
+
+    <xacro:property name="bseq" value="$(arg base_prefix)${sequence}"/>
+
+    <joint name="${bseq}_dg5f_ft_fixed" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}"/>
+      <parent link="${parent}" />
+      <child link="${bseq}_dg5f_ft_link" />
+    </joint>
+    <!--
+      dg_x_tip.stl vertices were recentered in-place (2026-08-08) by baking the
+      formerly-hardcoded origin xyz="-0.162781 0.025695 0.043887" directly
+      into the mesh data (trimesh apply_transform+export). This removes the
+      large CAD-assembly offset that got lever-arm-amplified into a visible
+      detachment when the parent joint bends ~80deg. Origin is now identity.
+    -->
+    <link name="${bseq}_dg5f_ft_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_x_tip.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <xacro:if value="${body == 1}">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg_x_tip.stl" scale="0.001 0.001 0.001" />
+          </geometry>
+          <material name="${col}"/>
+        </visual>
+        <xacro:unless value="${skipinertia == 1}">
+          <inertial>
+            <mass value="0.0108" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1.11e-07" ixy="0.0" ixz="0.0" iyy="2.97e-07" iyz="0.0" izz="4.03e-07" />
+          </inertial>
+        </xacro:unless>
+      </xacro:if>
+    </link>
+
+    <gazebo reference="${bseq}_dg5f_ft_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!--
+      The 12 taxels below are rotated 180deg about the mesh's own local Y
+      axis (x,y,z)->(-x,y,-z) relative to the original vendor-supplied
+      layout: the formation (relative spacing) is unchanged, but the whole
+      dome sits on the +Z side of this link, which maps to the palm-facing
+      side instead of the nail/dorsal side. y shifted by -0.006 (6mm total)
+      from that vendor-derived layout so the dome sits on the fingertip
+      surface instead of past it.
+
+      rx/ry/rz below (2026-08-05) rotate each taxel's own local Z axis to
+      align with the dg_x_tip.stl surface normal at that taxel's position,
+      instead of all 12 sharing one fixed direction: computed by taking the
+      mesh vertices within 3mm of each taxel (in this link's translated-only
+      frame), fitting a local plane via PCA (smallest-eigenvalue axis is the
+      normal, sign-checked against trimesh's own outward vertex normals),
+      then finding the minimal rotation that maps local +Z onto that normal.
+      Since the taxel's own visual is a symmetric sphere, the residual roll
+      about the normal is unconstrained/arbitrary and harmless.
+    -->
+    <xacro:if value="${taxels == 1}">
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_01" x="0.011700"  y="0.009488" z="0.000572" rx="-40.6875" ry="78.6974" rz="-33.8192" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_02" x="0.009008"  y="0.009838" z="0.007391" rx="-19.2030" ry="41.1047" rz="-7.2581" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_03" x="0.008961"  y="0.016651" z="0.002871" rx="-53.1667" ry="42.1148" rz="-21.8101" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_04" x="0.002300"  y="0.009328" z="0.010502" rx="-9.2249" ry="4.2216" rz="-0.3407" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_05" x="-0.002300" y="0.009328" z="0.010502" rx="-9.2779" ry="3.7685" rz="-0.3059" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_06" x="-0.002300" y="0.015734" z="0.008482" rx="-35.8668" ry="2.8491" rz="-0.9223" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_07" x="0.002300"  y="0.015734" z="0.008482" rx="-35.0597" ry="1.4969" rz="-0.4728" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_08" x="0.002300"  y="0.019832" z="0.003140" rx="-64.7553" ry="1.5421" rz="-0.9779" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_09" x="-0.002300" y="0.019832" z="0.003140" rx="-63.1191" ry="4.6531" rz="-2.8591" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_10" x="-0.009008" y="0.009838" z="0.007391" rx="-15.5667" ry="-35.8841" rz="5.0685" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_11" x="-0.008961" y="0.016651" z="0.002871" rx="-57.1355" ry="-41.0462" rz="23.0411" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sensor_prefix}${sequence}_dg5f_ft_12" x="-0.011700" y="0.009488" z="0.000572" rx="-31.7454" ry="-79.1834" rz="26.4663" parent="${bseq}_dg5f_ft_link" sensor_collision="${sensor_collision}" />
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

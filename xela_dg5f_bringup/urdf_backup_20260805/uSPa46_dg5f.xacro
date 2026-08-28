@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="dg_uSPa46" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- uSPa46 dg-5f model -->
+  <xacro:arg name="base_prefix" default="base_" />
+
+  <xacro:macro name="dg_uSPa46" params="sequence parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0 col:='blue' body:=1 taxels:=1 skipinertia:=0 xoff:=-0.0237 yoff:=0.0178 zoff:=0.005 txstep:=0.00724 tystep:=0.00717 standalone:=0 sensor_collision:=1">
+
+    <xacro:if value="${standalone == 1}">
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+    </xacro:if>
+
+    <xacro:property name="bseq" value="$(arg base_prefix)${sequence}"/>
+
+    <joint name="${bseq}_uSPa46_fixed" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}"/>
+      <parent link="${parent}" />
+      <child link="${bseq}_uSPa46_link" />
+    </joint>
+    <!--
+      dg_uspa46_base.stl keeps its raw CAD-assembly vertex coordinates:
+      bounding box x:[157.069,161.819] y:[-165.554,-120.454]
+      z:[-14.962,15.638] (mm). The dominant flat face (trimesh face-normal
+      clustering) is normal -X at x_min -> mount face is the (thin, 4.75mm)
+      X axis, depth grows toward +X, matching this macro's taxel zoff
+      (positive => away from the mount). This macro's taxel x/y params map
+      to mesh Y/Z respectively (taxel z=depth maps to mesh X), so the
+      recentering transform is a permutation rotation
+      raw(X,Y,Z) -> link(Z,X,Y), i.e. rpy = (0,-90,0), with translation
+      -R*(x_min,y_center,z_center) = -R*(0.157069,-0.143004,0.000338).
+    -->
+    <link name="${bseq}_uSPa46_link">
+      <collision>
+        <origin xyz="0.143004 -0.000338 -0.157069" rpy="0 ${radians(-90)} 0" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_uspa46_base.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <xacro:if value="${body == 1}">
+        <visual>
+          <origin xyz="0.143004 -0.000338 -0.157069" rpy="0 ${radians(-90)} 0" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg_uspa46_base.stl" scale="0.001 0.001 0.001" />
+          </geometry>
+          <material name="${col}"/>
+        </visual>
+        <xacro:unless value="${skipinertia == 1}">
+          <inertial>
+            <mass value="0.0108" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1.11e-07" ixy="0.0" ixz="0.0" iyy="2.97e-07" iyz="0.0" izz="4.03e-07" />
+          </inertial>
+        </xacro:unless>
+      </xacro:if>
+    </link>
+
+    <gazebo reference="${bseq}_uSPa46_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <xacro:if value="${taxels == 1}">
+      <xacro:taxel sequence="${sequence}_uSPa46_01" x="${1*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_02" x="${2*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_03" x="${3*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_04" x="${4*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_05" x="${5*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_06" x="${6*txstep+xoff}" y="${4*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_07" x="${1*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_08" x="${2*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_09" x="${3*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_10" x="${4*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_11" x="${5*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_12" x="${6*txstep+xoff}" y="${3*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_13" x="${1*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_14" x="${2*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_15" x="${3*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_16" x="${4*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_17" x="${5*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_18" x="${6*txstep+xoff}" y="${2*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_19" x="${1*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_20" x="${2*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_21" x="${3*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_22" x="${4*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_23" x="${5*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa46_24" x="${6*txstep+xoff}" y="${1*tystep-yoff}" z="${zoff}" parent="${bseq}_uSPa46_link" sensor_collision="${sensor_collision}" />
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

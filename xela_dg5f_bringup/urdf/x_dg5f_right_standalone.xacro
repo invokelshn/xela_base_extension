@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+    x_dg5f_right_standalone.xacro
+
+    Standalone demo/display document for the XELA-taxel-equipped DG-5F right
+    hand: wraps the reusable x_dg5f_hand macro (urdf/x_dg5f_hand.xacro) and
+    roots it at a free-floating base_link, for use with
+    launch/x_dg5f_right_display.launch.py (RViz + joint_state_publisher_gui,
+    no arm attached). For attaching the hand to an arm with a real
+    parent link and mount offset, xacro:include x_dg5f_hand.xacro directly
+    and instantiate <xacro:x_dg5f_hand parent="..." .../> instead of this file.
+-->
+<robot name="x_dg5f_right" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Default matches what ur7e_xdg5f_atag_right_sim actually loads for MoveIt Pro's own
+       planning robot_description: sensor housings always present, individual taxel-dot
+       markers off. Override on the command line (xacro ... taxels:=1) to preview the full
+       taxel-dot model, e.g. via x_dg5f_right_display.launch.py's taxels/sensor_collision
+       launch arguments. -->
+  <xacro:arg name="taxels" default="0" />
+  <xacro:arg name="sensor_collision" default="0" />
+
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/x_dg5f_hand.xacro" />
+
+  <link name="base_link" />
+
+  <xacro:x_dg5f_hand parent="base_link" side="right"
+    taxels="$(arg taxels)" sensor_collision="$(arg sensor_collision)" />
+
+</robot>
