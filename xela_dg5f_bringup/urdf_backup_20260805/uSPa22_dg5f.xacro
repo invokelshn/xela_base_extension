@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot name="dg_uSPa22" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- uSPa22 dg-5f model -->
+  <xacro:arg name="base_prefix" default="base_" />
+
+  <xacro:macro name="dg_uSPa22" params="sequence parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0 col:='blue' body:=1 taxels:=1 skipinertia:=0 xoff=-0.0009 yoff=0.0011 zoff=0.003 txstep=0.0046666 tystep=0.00466666 standalone:=0 sensor_collision:=1">
+
+    <xacro:if value="${standalone == 1}">
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+      <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+    </xacro:if>
+
+    <xacro:property name="bseq" value="$(arg base_prefix)${sequence}"/>
+
+    <joint name="${bseq}_uSPa22_fixed" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}"/>
+      <parent link="${parent}" />
+      <child link="${bseq}_uSPa22_link" />
+    </joint>
+    <!--
+      dg_uspa22_base.stl keeps its raw CAD-assembly vertex coordinates:
+      bounding box x:[154.322,170.222] y:[-51.530,-35.630] z:[-35.487,-30.487]
+      (mm), a flat 15.9x15.9x5.0mm pad. X/Y are centered (x_center,y_center);
+      Z keeps the z_min reference (depth grows toward +Z, matching this
+      macro's taxel z below). rpy applies a 90deg in-plane turn about the
+      pad's own depth/Z axis (reported: needed to match the phalanx
+      surface): origin xyz = -(Rz(90) applied to (x_center,y_center)),
+      i.e. -(-y_center, x_center, z_min) = -(0.043580,0.162272,-0.035487).
+    -->
+    <link name="${bseq}_uSPa22_link">
+      <collision>
+        <origin xyz="-0.043580 -0.162272 0.035487" rpy="0 0 ${radians(90)}" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_uspa22_base.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <xacro:if value="${body == 1}">
+        <visual>
+          <origin xyz="-0.043580 -0.162272 0.035487" rpy="0 0 ${radians(90)}" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg_uspa22_base.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
+          <material name="${col}"/>
+        </visual>
+        <xacro:unless value="${skipinertia == 1}">
+          <inertial>
+            <mass value="0.0036" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="5.76e-09" ixy="0.0" ixz="0.0" iyy="6.55e-09" iyz="1.44e-10" izz="1.20e-08" />
+          </inertial>
+        </xacro:unless>
+      </xacro:if>
+    </link>
+
+    <gazebo reference="${bseq}_uSPa22_link">
+      <material>Gazebo/Green</material>
+    </gazebo>
+
+    <!--
+      Taxel xyz below were measured directly off the mesh: found the 4
+      raised bump tips on dg_uspa22_base.stl (kmeans clustering of the
+      near-top-Z vertices), recentered the same way as the visual/collision
+      origin above (center X/Y, z_min, then the same Rz(90) spin), so each
+      taxel sits exactly on its physical bump instead of an approximate
+      grid formula.
+    -->
+    <xacro:if value="${taxels == 1}">
+      <xacro:taxel sequence="${sequence}_uSPa22_01"  x="0.002459"  y="-0.002547" z="0.004939" parent="${bseq}_uSPa22_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa22_02"  x="0.002431"  y="0.002148"  z="0.004939" parent="${bseq}_uSPa22_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa22_03"  x="-0.002241" y="-0.002547" z="0.004939" parent="${bseq}_uSPa22_link" sensor_collision="${sensor_collision}" />
+      <xacro:taxel sequence="${sequence}_uSPa22_04"  x="-0.002269" y="0.002148"  z="0.004939" parent="${bseq}_uSPa22_link" sensor_collision="${sensor_collision}" />
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

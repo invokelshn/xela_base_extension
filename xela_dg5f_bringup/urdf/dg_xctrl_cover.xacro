@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="dg_xctrl_cover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    dg_xctrl_cover: sensor-controller back cover, mounted on the phalanx face
+    OPPOSITE the corresponding uSPa22 sensor (same phalanx, dorsal/back side),
+    centerline aligned with that uSPa22's axial mount position.
+
+    dg_xctrl_cover.stl vertices were recentered in-place (2026-08-08): the
+    former per-axis reference point (x_center,y_center,z_max) was baked
+    directly into the mesh via trimesh apply_transform+export, removing the
+    large CAD-assembly translation that used to live in mesh_x/y/z (fixed a
+    visible sensor-detachment bug lever-arm-amplified at large joint bend
+    angles). Only the in-plane mesh_rz spin remains as a URDF parameter
+    (pure rotation about the now-centered mesh origin): the same recentered
+    mesh serves both standard fingers (mesh_rz=90) and the thumb (mesh_rz=0).
+  -->
+  <xacro:macro name="dg_xctrl_cover" params="sequence parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0 col:='grey' mesh_rz:=90">
+
+    <joint name="${sequence}_xctrl_cover_fixed" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}"/>
+      <parent link="${parent}" />
+      <child link="${sequence}_xctrl_cover_link" />
+    </joint>
+
+    <link name="${sequence}_xctrl_cover_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${radians(mesh_rz)}" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_xctrl_cover.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${radians(mesh_rz)}" />
+        <geometry>
+          <mesh filename="package://xela_dg5f_bringup/mesh/dg_xctrl_cover.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="${col}"/>
+      </visual>
+      <inertial>
+        <mass value="0.0015" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1.0e-09" ixy="0.0" ixz="0.0" iyy="1.0e-09" iyz="0.0" izz="1.0e-09" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${sequence}_xctrl_cover_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

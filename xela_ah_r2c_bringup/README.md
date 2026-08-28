@@ -11,6 +11,17 @@ Bringup package for Allegro Hand + XELA tactile model visualization on ROS 2.
 
 This package focuses on model bringup and visualization. It does not include tactile hardware driver runtime.
 
+Beyond standalone visualization, the primary use case is `xacro:include`-ing `allegro_hand_right_r2c`/`allegro_hand_left_r2c` from another robot's Xacro file, so an arm (or any other parent link) can mount a fully-parameterized, sensorized-or-not Allegro Hand without duplicating URDF. See `DESIGN.md` for the macro parameter reference.
+
+```xml
+<xacro:include filename="$(find xela_ah_r2c_bringup)/urdf/allegro_hand_right_r2c.xacro" />
+<xacro:allegro_hand_right_r2c
+  sequence="0" parent="tool0"
+  x="0.0" y="0.0" z="0.0" rx="0" ry="0" rz="0"
+  covers="1" phalanges="1" tips="flat" palm="1"
+  taxels="1" sensor_collision="0" defaultnames="1" />
+```
+
 ## Package Layout
 
 - `launch/xacro_launch.py`: Main launch entry point.
@@ -98,4 +109,5 @@ xacro $(ros2 pkg prefix xela_ah_r2c_bringup)/share/xela_ah_r2c_bringup/urdf/x_al
 
 ## Document References
 
-- Detailed package analysis and architecture: `PSD.md`
+- Requirements / scope: `PRD.md`
+- Architecture, macro parameter design, sensor composition, left/right symmetry strategy, known limitations: `DESIGN.md`

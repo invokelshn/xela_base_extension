@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!--
+    x_dg5f_hand.xacro
+
+    XELA bringup macro for the Tesollo DG-5F hand (right or left).
+    Mirrors the xela_ah_r2c_bringup/allegro_hand_right_r2c.xacro convention
+    (macro params="... parent x y z rx ry rz ... taxels sensor_collision")
+    so this hand can be xacro:include'd and instantiated by an arm xacro with
+    an explicit parent link and mount offset, instead of being a standalone
+    <robot> document rooted at a fixed base_link.
+
+    Wraps the stock DG-5F kinematics/mesh (dg5f_description's dg5f_hand
+    macro) and attaches XELA tactile sensors:
+      - dg5f_fingertip  : 12-taxel tip sensor on all 5 fingertips
+      - uSPa22          : 4-taxel patch on the 2 distal phalanges of every finger
+      - uSPa46          : 24-taxel patch on the palm
+      - dg_xctrl_cover  : cosmetic sensor-controller back cover, dorsal side
+
+    side="right" is implemented today (dg5f_description's dg5f_right_fingers
+    link/joint naming: rl_dg_*). side="left" is accepted and forwarded to the
+    vendor dg5f_hand macro (which does support ll_dg_* naming), but the XELA
+    sensor placements below are only tuned/verified for the right hand -
+    left-hand sensor offsets are a follow-up (see x_dg5f_left_standalone.xacro
+    TODO once created).
+
+    NOTE - mesh recentering (unchanged from the original x_dg5f_right.xacro):
+    The XELA sensor STL files in xela_dg5f_bringup/mesh/*.stl keep their raw
+    CAD-assembly vertex coordinates (not centered on their own link origin).
+    That is compensated inside each macro's own visual/collision <origin>
+    (dg5f_fingertip.xacro, uSPa22_dg5f.xacro, uSPa46_dg5f.xacro), so the
+    joint xyz/rpy below stays a plain, small mount-point offset that the
+    taxel array offsets in those same macros assume. Do NOT reintroduce a
+    large compensation offset here; the taxels and the mesh share the same
+    link/joint, so shifting this joint moves the taxels too.
+    All of the placements below are first-pass/empirically-tuned via visual
+    feedback in RViz; confirm/adjust visually if the phalanx/mesh geometry
+    changes (see the freecad-cad-to-urdf-transform skill).
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="x_dg5f_hand">
+
+  <!-- ==================== Includes ==================== -->
+  <!-- Stock DG-5F kinematics/meshes -->
+  <xacro:include filename="$(find dg5f_description)/urdf/dg5f_macro.xacro" />
+
+  <!-- XELA sensor macros -->
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/materials.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/taxel.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/dg5f_fingertip.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/uSPa22_dg5f.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/uSPa46_dg5f.xacro" />
+  <xacro:include filename="$(find xela_dg5f_bringup)/urdf/dg_xctrl_cover.xacro" />
+
+  <xacro:macro name="x_dg5f_hand"
+    params="parent x:=0.0 y:=0.0 z:=0.0 rx:=0.0 ry:=0.0 rz:=0.0
+            side:='right' prefix:='' base_type:='default' with_mount:='true'
+            taxels:=1 sensor_collision:=1 sensor_prefix:=''">
+    <!--
+      sensor_prefix (added 2026-08-23): forwarded verbatim to every taxel
+      sensor sub-macro below (see dg5f_fingertip.xacro's comment). Defaults
+      to '' so this macro's existing callers (real hand bringup,
+      ur7e_dg5f_base.srdf.xacro's disable_collisions entries, which hardcode
+      the unprefixed taxel dot names) are completely unaffected; only
+      std_xela_taxel_viz_dg5f's viz xacro passes a non-empty value (e.g.
+      "x_taxel_1_" for right, "x_taxel_0_" for left, matching
+      xela_server2_dg5f's *_server_model_joint_map.yaml naming convention).
+    -->
+
+    <!--
+      Stock phalanx segment lengths (from dg5f_right_fingers.urdf.xacro joint
+      origins: the length of link L is the translation in the origin of the
+      joint whose parent is L). f1 (thumb) and f5 (pinky) are UNCHANGED from
+      the original values/parents (user confirmed both already looked
+      correct); only f2/f3/f4's uSPa22/xctrl_cover parent+length were
+      corrected (see below) to fix the confirmed index/middle/ring bug.
+    -->
+    <xacro:property name="len_f1_prox" value="0.0388" /> <!-- rl_dg_1_3, translates along local y -->
+    <xacro:property name="len_f1_mid" value="0.03203" /> <!-- rl_dg_1_4, translates along local y -->
+    <xacro:property name="len_std_prox" value="0.0388" /> <!-- rl_dg_{2,3,4}_2 span (to _3) AND rl_dg_{2,3,4}_3 span (to _4): both phalanges are 0.0388 long -->
+    <xacro:property name="len_f234_mid" value="0.0388" /> <!-- rl_dg_{2,3,4}_3 span (to _4); was 0.02123 (stale, matched the old wrong parent rl_dg_{2,3,4}_4) -->
+    <xacro:property name="len_f5_mid" value="0.03203" /> <!-- rl_dg_5_4, unchanged from original -->
+
+    <xacro:property name="xela_phalange_standoff" value="0.0095" />
+    <xacro:property name="xela_axial_shift_f1" value="0.002" />
+    <xacro:property name="xela_axial_shift_f2_mid" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f2_prox" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f3_mid" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f3_prox" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f4_mid" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f4_prox" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f5_mid" value="-0.001" />
+    <xacro:property name="xela_axial_shift_f5_prox" value="0.002" />
+    <xacro:property name="xela_xctrl_cover_standoff" value="0.0085" />
+
+    <!-- ==================== Mount ==================== -->
+    <joint name="${prefix}x_dg5f_mount_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="${radians(rx)} ${radians(ry)} ${radians(rz)}" />
+      <parent link="${parent}" />
+      <child link="${prefix}rl_dg_base_link" />
+    </joint>
+
+    <!--
+      Instantiate the stock hand. tipN_type is always "xela" (a value the
+      stock macro does not recognise) so that no vendor tip link is ever
+      created; our own XELA fingertip sensor HOUSING is attached instead, at
+      the exact same origin the vendor tip would have used. This is
+      unconditional: unlike the individual taxel dot markers below, the
+      sensor housings (fingertip dome, uSPa22/uSPa46 pads, xctrl_cover) are
+      physical hardware that is always present on this hand, so they must
+      always be part of the URDF regardless of the taxels flag. `taxels`
+      only controls whether the tiny prismatic taxel-dot markers inside each
+      housing are instantiated (see dg5f_fingertip.xacro/uSPa22_dg5f.xacro/
+      uSPa46_dg5f.xacro's own internal `taxels` param); mirrors how
+      allegro_hand_right_r2c.xacro's `covers`/tip housing links are
+      unconditional while its own `taxels` param only gates the individual
+      uSPa44 taxel dots. MoveIt Pro's own planning robot_description loads
+      with taxels=0 (dots excluded, housings included) to avoid checking
+      124 tiny near-touching dot markers for self-collision; a separate
+      taxels=1 render is published on /robot_description_full for
+      visualization only (see dg5f_description_bringup.launch.py).
+    -->
+    <xacro:dg5f_hand
+      prefix="${prefix}"
+      side="${side}"
+      base_type="${base_type}"
+      with_mount="${with_mount}"
+      tip1_type="xela"
+      tip2_type="xela"
+      tip3_type="xela"
+      tip4_type="xela"
+      tip5_type="xela"
+    />
+
+    <!-- ==================== Fingertip sensors ==================== -->
+      <xacro:dg5f_fingertip sequence="f1" col="red" parent="${prefix}rl_dg_1_4"
+        x="0.0" y="0.03203" z="0.0" rx="0" ry="0" rz="0" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <xacro:dg5f_fingertip sequence="f2" col="red" parent="${prefix}rl_dg_2_4"
+        x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <xacro:dg5f_fingertip sequence="f3" col="red" parent="${prefix}rl_dg_3_4"
+        x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <xacro:dg5f_fingertip sequence="f4" col="red" parent="${prefix}rl_dg_4_4"
+        x="0.0" y="0.0" z="0.02123" rx="90" ry="0" rz="90" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <xacro:dg5f_fingertip sequence="f5" col="red" parent="${prefix}rl_dg_5_4"
+        x="0.0" y="0.0" z="0.03203" rx="90" ry="0" rz="90" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- ==================== Phalange sensors (uSPa22 x2 per finger) ==================== -->
+      <!-- Finger 1 (thumb): prox = rl_dg_1_3, mid = rl_dg_1_4 -->
+      <xacro:dg_uSPa22 sequence="f1_prox" col="green" parent="${prefix}rl_dg_1_3"
+        x="0.0" y="${len_f1_prox/2 - xela_axial_shift_f1}" z="${xela_phalange_standoff}" rx="0" ry="0" rz="0"
+        mesh_rz="0" taxel_rz="-90"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+      <xacro:dg_uSPa22 sequence="f1_mid" col="green" parent="${prefix}rl_dg_1_4"
+        x="0.0" y="${len_f1_mid/2 - xela_axial_shift_f1}" z="${xela_phalange_standoff}" rx="0" ry="0" rz="0"
+        mesh_rz="0" taxel_rz="-90"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- Finger 2 (index): prox = rl_dg_2_2, mid = rl_dg_2_3 (TEST: corrected parent, was 2_3/2_4) -->
+      <xacro:dg_uSPa22 sequence="f2_prox" col="green" parent="${prefix}rl_dg_2_2"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f2_prox}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+      <xacro:dg_uSPa22 sequence="f2_mid" col="green" parent="${prefix}rl_dg_2_3"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f2_mid}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- Finger 3 (middle): prox = rl_dg_3_2, mid = rl_dg_3_3 (TEST: corrected parent, was 3_3/3_4) -->
+      <xacro:dg_uSPa22 sequence="f3_prox" col="green" parent="${prefix}rl_dg_3_2"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f3_prox}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+      <xacro:dg_uSPa22 sequence="f3_mid" col="green" parent="${prefix}rl_dg_3_3"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f3_mid}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- Finger 4 (ring): prox = rl_dg_4_2, mid = rl_dg_4_3 (TEST: corrected parent, was 4_3/4_4) -->
+      <xacro:dg_uSPa22 sequence="f4_prox" col="green" parent="${prefix}rl_dg_4_2"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f4_prox}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+      <xacro:dg_uSPa22 sequence="f4_mid" col="green" parent="${prefix}rl_dg_4_3"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f4_mid}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- Finger 5 (pinky): prox = rl_dg_5_3, mid = rl_dg_5_4 (reverted 2026-08-08: user confirmed pinky was already correct, unlike f2/f3/f4) -->
+      <xacro:dg_uSPa22 sequence="f5_prox" col="green" parent="${prefix}rl_dg_5_3"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f5_prox}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+      <xacro:dg_uSPa22 sequence="f5_mid" col="green" parent="${prefix}rl_dg_5_4"
+        x="${xela_phalange_standoff}" y="0.0" z="${len_f5_mid/2 - xela_axial_shift_f5_mid}" rx="0" ry="90" rz="0"
+        taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- ==================== Sensor controller back covers (dg_xctrl_cover x2 per finger) ==================== -->
+      <xacro:dg_xctrl_cover sequence="${prefix}f1_prox" parent="${prefix}rl_dg_1_3"
+        x="0.0" y="${len_f1_prox/2 - xela_axial_shift_f1}" z="${-xela_xctrl_cover_standoff}" rx="0" ry="0" rz="0"
+        mesh_rz="0" />
+      <xacro:dg_xctrl_cover sequence="${prefix}f1_mid" parent="${prefix}rl_dg_1_4"
+        x="0.0" y="${len_f1_mid/2 - xela_axial_shift_f1}" z="${-xela_xctrl_cover_standoff}" rx="0" ry="0" rz="0"
+        mesh_rz="0" />
+
+      <xacro:dg_xctrl_cover sequence="${prefix}f2_prox" parent="${prefix}rl_dg_2_2"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f2_prox}" rx="0" ry="90" rz="0" />
+      <xacro:dg_xctrl_cover sequence="${prefix}f2_mid" parent="${prefix}rl_dg_2_3"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f2_mid}" rx="0" ry="90" rz="0" />
+
+      <xacro:dg_xctrl_cover sequence="${prefix}f3_prox" parent="${prefix}rl_dg_3_2"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f3_prox}" rx="0" ry="90" rz="0" />
+      <xacro:dg_xctrl_cover sequence="${prefix}f3_mid" parent="${prefix}rl_dg_3_3"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f3_mid}" rx="0" ry="90" rz="0" />
+
+      <xacro:dg_xctrl_cover sequence="${prefix}f4_prox" parent="${prefix}rl_dg_4_2"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f4_prox}" rx="0" ry="90" rz="0" />
+      <xacro:dg_xctrl_cover sequence="${prefix}f4_mid" parent="${prefix}rl_dg_4_3"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_f234_mid/2 - xela_axial_shift_f4_mid}" rx="0" ry="90" rz="0" />
+
+      <xacro:dg_xctrl_cover sequence="${prefix}f5_prox" parent="${prefix}rl_dg_5_3"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_std_prox/2 - xela_axial_shift_f5_prox}" rx="0" ry="90" rz="0" />
+      <xacro:dg_xctrl_cover sequence="${prefix}f5_mid" parent="${prefix}rl_dg_5_4"
+        x="${-xela_xctrl_cover_standoff}" y="0.0" z="${len_f5_mid/2 - xela_axial_shift_f5_mid}" rx="0" ry="90" rz="0" />
+
+      <!-- ==================== Palm sensor (uSPa46) ==================== -->
+      <xacro:dg_uSPa46 sequence="palm" col="blue" parent="${prefix}rl_dg_palm"
+        x="0.0225" y="0.003" z="0.058" rx="0" ry="90" rz="0" taxels="${taxels}" sensor_collision="${sensor_collision}" sensor_prefix="${sensor_prefix}" />
+
+      <!-- ==================== Hand-back cover (DG-5F-back-cover-right-assy) ==================== -->
+      <!--
+        dg5f_back_cover_right.stl vertices were recentered in-place (2026-08-08)
+        by baking the formerly-hardcoded origin xyz="-0.10728425 0.144337
+        0.00682845" directly into the mesh data (trimesh apply_transform+
+        export), removing the raw CAD-assembly offset. Origin is now identity.
+      -->
+      <link name="${prefix}rl_dg_back_cover">
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg5f_back_cover_right.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
+        </collision>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://xela_dg5f_bringup/mesh/dg5f_back_cover_right.stl" scale="0.001 0.001 0.001"/>
+          </geometry>
+          <material name="grey"/>
+        </visual>
+        <inertial>
+          <mass value="0.02" />
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <inertia ixx="1.0e-06" ixy="0.0" ixz="0.0" iyy="1.0e-06" iyz="0.0" izz="1.0e-06" />
+        </inertial>
+      </link>
+
+      <joint name="${prefix}rl_dg_back_cover_fixed" type="fixed">
+        <origin xyz="-0.02906014697 0.00176680325 0.12543374997" rpy="0 0 0" />
+        <parent link="${prefix}rl_dg_base_link" />
+        <child link="${prefix}rl_dg_back_cover" />
+      </joint>
+
+  </xacro:macro>
+
+</robot>
