@@ -10,6 +10,13 @@
 	path = allegro_hand_ros2
 	url = https://github.com/wilson-ko/allegro_hand_ros2.git
 	branch = fixed/moveit-pro
-[submodule "dg5f_ros2"]
-	path = dg5f_ros2
+[submodule "tesollo_ros2/dg5f_ros2"]
+	path = tesollo_ros2/dg5f_ros2
 	url = https://github.com/tesollodelto/dg5f_ros2.git
+	branch = main
+[submodule "tesollo_ros2/dg_common/delto_hardware"]
+	path = tesollo_ros2/dg_common/delto_hardware
+	url = https://github.com/tesollodelto/dg_hardware.git
+[submodule "tesollo_ros2/dg_common/delto_tcp_comm"]
+	path = tesollo_ros2/dg_common/delto_tcp_comm
+	url = https://github.com/tesollodelto/dg_tcp_comm.git
